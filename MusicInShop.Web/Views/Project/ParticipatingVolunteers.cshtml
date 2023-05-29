@@ -1,0 +1,38 @@
+﻿@model MusicInShop.Web.Models.ParticipatingVolunteersModel
+
+@{
+    ViewBag.Title = "MyProjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<span><img src="~/Content/img/white.png" alt="" height="120"></span>
+
+<div class="container">
+    <div class="row">
+        <div class="my-projects-title">
+            <h2>Участвуют</h2>
+        </div>
+    </div>
+</div>
+
+<div class="volunt-list">
+    <div class="table-class">
+        <table class="table">
+
+            @{
+                var volunteers = Model.ProjectVolunteers;
+
+                foreach (var item in volunteers)
+                {
+                    <tr>
+                        <td>
+                            <div class="rounded-corners table-margin-img"><img src="@string.Format($"/Content/img/users/{item.VolunteerId}.jpg")" class="img-responsive" width=" 180"></div>
+                        </td>
+                        <td>
+                            <div class="volunt-name">@Html.DisplayFor(modelItem => item.Volunteer.Name) @Html.DisplayFor(modelItem => item.Volunteer.LastName)</div>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+﻿@model MusicInShop.Web.Models.ProjectPageModel
+
+@{
+    ViewBag.Title = Model.Project.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container space-top">
+    <div class="project-page-top">
+        <div class="image-block">
+            <!-- Product Details Left -->
+            <div class="product-details-left">
+                <div class="product-details-images">
+                    <div class="lg-image rounded-corners">
+                        <img src="@string.Format($"/Content/img/projects/{Model.Project.Id}.jpg")" alt="">
+                    </div>
+                </div>
+            </div>
+            <!--Product Details Left -->
+        </div>
+        <div class="general-info">
+            <div class="col-md-6">
+                <!--Product Details Content Start-->
+                <div class="product-details-content info-width">
+
+                    <h1 class="title-text-color">@Model.Project.Name</h1>
+                    <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+                    <p class="project-page-title">Организатор</p>
+                    <h4 class="project-page-text"><a href= @Url.Action("OrganizationPage", "Organization", new { email = Model.Project.Organization.Email })>@Model.Project.Organization.Name</a></h4>
+
+                    <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+                    <p class="project-page-title">Город / село</p>
+                    <h4 class="project-page-text">@Model.Project.Town</h4>
+
+                    <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <!--Product Details Content Start-->
+        <div class="product-details-content">
+
+            <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+            <p class="project-page-title">Описание</p>
+            <p class="project-page-text">@Model.Project.Description</p>
+
+            <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+            @if (Model.Project.Address != null)
+            {
+                <p class="project-page-title">Адресс</p>
+                <h4 class="project-page-text">@Model.Project.Address</h4>
+
+                <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+            }
+
+            @if (Model.Project.Date != null)
+            {
+                <p class="project-page-title">Дата</p>
+                <h4 class="project-page-text">@Model.Project.Date</h4>
+
+                <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+            }
+
+            @if (Model.Project.RequiredNumberOfVolunteers != 0)
+            {
+                <p class="project-page-title">Необходимое количество волонтёров</p>
+                <h4 class="project-page-text">@Model.Project.RequiredNumberOfVolunteers</h4>
+                <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+            }
+
+            @if (Model.Project.NumberOfParticipatingVolunteers != 0)
+            {
+                <div class="participations-hover">
+                    <a href = "@Url.Action("ParticipatingVolunteers", "Project", new { id = Model.Project.Id })"><p class="project-page-title">Уже участвуют: &nbsp; <span class="project-page-text">@Model.Project.NumberOfParticipatingVolunteers</span></p></a>
+                </div>
+            }
+
+            <span><img src="~/Content/img/white.png" alt="" height="50"></span>
+
+            @if (User.Identity.IsAuthenticated && Model.User.Role == "volunteer")
+            {
+
+                <div class="single-product-quantity">
+                    @using (Ajax.BeginForm("ParticipateInProject", "Project", new { id = Model.Project.Id }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "empty" }))
+                    {
+                        <div class="add-to-link">
+                            <button class="btn">Участвовать</button>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

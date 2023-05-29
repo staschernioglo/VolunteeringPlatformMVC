@@ -1,0 +1,103 @@
+﻿@model MusicInShop.Web.Models.GoodDeedPageModel
+
+@{
+    ViewBag.Title = Model.GoodDeed.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container space-top">
+    <div class="project-page-top">
+        <div class="image-block">
+            <!-- Product Details Left -->
+            <div class="product-details-left">
+                <div class="product-details-images">
+                    <div class="lg-image rounded-corners">
+                        <img src="@string.Format($"/Content/img/goodDeeds/{Model.GoodDeed.Id}.jpg")" alt="">
+                    </div>
+                </div>
+            </div>
+            <!--Product Details Left -->
+        </div>
+        <div class="general-info">
+            <div class="col-md-6">
+                <!--Product Details Content Start-->
+                <div class="product-details-content info-width">
+
+                    <h1 class="title-text-color">@Model.GoodDeed.Name</h1>
+                    <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+                    <p class="project-page-title">Добавил</p>
+                    <h4 class="project-page-text"><a href="#">@Model.GoodDeed.SimpleUser.Name @Model.GoodDeed.SimpleUser.LastName</a></h4>
+
+                    <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+                    <p class="project-page-title">Город / село</p>
+                    <h4 class="project-page-text">@Model.GoodDeed.Town</h4>
+
+                    <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <!--Product Details Content Start-->
+        <div class="product-details-content">
+
+            <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+            <p class="project-page-title">Описание</p>
+            <p class="project-page-text">@Model.GoodDeed.Description</p>
+
+            <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+            @if (Model.GoodDeed.Address != null)
+            {
+                <p class="project-page-title">Адресс</p>
+                <h4 class="project-page-text">@Model.GoodDeed.Address</h4>
+
+                <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+            }
+
+            @if (Model.GoodDeed.PhoneNumber != null)
+            {
+                <p class="project-page-title">Номер телефона</p>
+                <h4 class="project-page-text">@Model.GoodDeed.PhoneNumber</h4>
+
+                <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+            }
+
+            @if (Model.GoodDeed.Date != null)
+            {
+                <p class="project-page-title">Дата</p>
+                <h4 class="project-page-text">@Model.GoodDeed.Date</h4>
+
+                <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+            }
+
+            @if (Model.GoodDeed.RequiredNumberOfVolunteers != 0)
+            {
+                <p class="project-page-title">Необходимое количество волонтёров</p>
+                <h4 class="project-page-text">@Model.GoodDeed.RequiredNumberOfVolunteers</h4>
+            }
+
+            <span><img src="~/Content/img/white.png" alt="" height="50"></span>
+
+            @if (User.Identity.IsAuthenticated && Model.User.Role == "volunteer")
+            {
+
+                <div class="single-product-quantity">
+                    @using (Ajax.BeginForm("AddToCart", "Shop", new { id = Model.GoodDeed.Id }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "empty" }, new
+                    {
+                        @class = "add-quantity"
+                    }))
+                    {
+                        <div class="add-to-link">
+                            <button class="btn">Участвовать</button>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

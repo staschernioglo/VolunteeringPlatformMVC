@@ -1,0 +1,87 @@
+﻿@model MusicInShop.Web.Models.RegisterVolunteerModel
+@{
+    ViewBag.Title = "RegisterVolunteer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="register-box">
+    <div class="row">
+        <div class="customer-login-register register-pt-0">
+            <div class="form-register-title">
+                <span><img src="~/Content/img/white.png" alt="" height="50"></span>
+                <h2>Регистрация <span class="lcase">волонтёра</span></h2>
+            </div>
+            <div class="register-form">
+                @using (Html.BeginForm("RegisterVolunteer", "Account"))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-fild">
+                        <p><label>Email <span class="required">*</span></label></p>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { type = "text" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <h2></h2>
+                    <div class="form-fild">
+                        <p><label>Имя <span class="required">*</span></label></p>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { type = "text" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                    <h2></h2>
+                    <div class="form-fild">
+                        <p><label>Фамилия <span class="required">*</span></label></p>
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { type = "text" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                    <h2></h2>
+                    <div class="form-fild">
+                        <p><label>Пароль <span class="required">*</span></label></p>
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { type = "password" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <h2></h2>
+                    <div class="form-fild">
+                        <p><label>Подтвердите пароль <span class="required">*</span></label></p>
+                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { type = "password" } })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                    <h2></h2>
+                    <div class="form-fild">
+                        <p><label>Дата рождения <span class="required">*</span></label></p>
+                        @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { type = "date" } })
+                        @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                    </div>
+                    <h2></h2>
+                    <div class="form-fild">
+                        <p><label>Информация о себе <span class="required"></span></label></p>
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { type = "text" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                    <h2></h2>
+                    <div class="form-fild">
+                        <p><label>Город <span class="required"></span></label></p>
+                        @Html.EditorFor(model => model.Town, new { htmlAttributes = new { type = "text" } })
+                        @Html.ValidationMessageFor(model => model.Town, "", new { @class = "text-danger" })
+                    </div>
+                    <h2></h2>
+                    <div class="form-fild">
+                        <p><label>Номер телефона <span class="required"></span></label></p>
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { type = "text" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                    <h2></h2>
+                    <div class="form-fild">
+                        <p><label>Фотография <span class="required"></span></label></p>
+                        @Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { type = "file" } })
+                        @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+                    </div>
+                    <h2></h2>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="register-submit btn-bot reg-btn">
+                        <button type="submit" class="btn btn-left">Регистрация</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

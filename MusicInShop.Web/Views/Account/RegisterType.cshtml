@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "RegisterType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="register-container">
+    <div class="type-block">
+        <div class="img-block-simple">
+            <img src="~/Content/img/register_icons/simple.png" class="img-params-new"/>
+        </div>
+        <div class="button-center">
+            <a href="@Url.Action("RegisterSimpleUser", "Account")" class="glow-button">Регистрация</a>
+        </div>
+        
+    </div>
+
+    <div class="type-block">
+        <div class="img-block-volunteer">
+            <img src="~/Content/img/register_icons/volunteer.png" class="img-params-new" />
+        </div>
+        <div class="button-center">
+            <a href="@Url.Action("RegisterVolunteer", "Account")" class="glow-button">Регистрация волонтёра</a>
+        </div>
+    </div>
+
+    <div class="type-block">
+        <div class="img-block-organization">
+            <img src="~/Content/img/register_icons/organization.png" class="img-params-new"/>
+        </div>
+        <div class="button-center">
+            <a href="@Url.Action("RegisterOrganization", "Account")" class="glow-button">Регистрация организатора</a>
+        </div>
+        
+    </div>
+</div>

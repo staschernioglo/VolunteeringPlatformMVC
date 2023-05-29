@@ -1,0 +1,54 @@
+﻿@model MusicInShop.Web.Models.ParticipatingVolunteersModel
+
+@{
+    ViewBag.Title = "MyProjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<span><img src="~/Content/img/white.png" alt="" height="120"></span>
+
+<div class="container">
+    <div class="row">
+        <div class="my-projects-title">
+            <h2>Участвуют</h2>
+        </div>
+    </div>
+</div>
+
+<div class="volunt-list-org">
+    <div class="table-class">
+        <table class="table">
+
+            @{
+                var volunteers = Model.ProjectVolunteers;
+
+                foreach (var item in volunteers)
+                {
+                    <tr>
+                        <td>
+                            <div class="rounded-corners table-margin-img"><img src="@string.Format($"/Content/img/users/{item.VolunteerId}.jpg")" class="img-responsive" width=" 180"></div>
+                        </td>
+                        <td>
+                            <div class="volunt-name">@Html.DisplayFor(modelItem => item.Volunteer.Name) @Html.DisplayFor(modelItem => item.Volunteer.LastName)</div>
+                        </td>
+                        <td>
+                            @{ if (item.Status == 0)
+                                {
+                                    <div class="volunt-confirm"><a href="@Url.Action("ConfirmParticipant", "Organization", new { id = item.Id, projectId = item.ProjectId })"><p>Подтвердить</p></a></div>
+                                }
+                                else if (item.Status == 1)
+                                {
+                                    <div class="volunt-confirmed">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="green"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" /></svg>
+                                    </div>
+                                }
+                            }
+                        </td>
+                        <td>
+                            <div class="volunt-delete"><a>@Html.ActionLink("Удалить", "DeleteParticipant", new { id = item.Id, projectId = item.ProjectId })</a></div>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>

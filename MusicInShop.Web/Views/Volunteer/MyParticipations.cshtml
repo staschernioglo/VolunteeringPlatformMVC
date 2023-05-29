@@ -1,0 +1,42 @@
+﻿@model MusicInShop.Web.Models.ParticipatingVolunteersModel
+
+@{
+    ViewBag.Title = "MyProjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<span><img src="~/Content/img/white.png" alt="" height="120"></span>
+
+<div class="container">
+    <div class="row">
+        <div class="my-projects-title">
+            <h2>Мои участия</h2>
+        </div>
+
+    </div>
+</div>
+
+<div class="my-participations-table">
+    <div class="table-class">
+        <table class="table">
+
+            @{
+                var myParticipations = Model.ProjectVolunteers.Where(x => x.Volunteer.Email == User.Identity.Name).OrderByDescending(x => x.Id);
+
+                foreach (var item in myParticipations)
+                {
+                    <tr>
+                        <td>
+                            <div class="rounded-corners table-margin-img"><img src="@string.Format($"/Content/img/projects/{item.ProjectId}.jpg")" class="img-responsive" width=" 230"></div>
+                        </td>
+                        <td>
+                            <div class="project-name">@Html.DisplayFor(modelItem => item.Project.Name)</div>
+                        </td>
+                        <td>
+                            <div class="project-delete"><a>@Html.ActionLink("Отменить", "CancelParticipation", new { id = item.Id })</a></div>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>

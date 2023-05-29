@@ -1,0 +1,71 @@
+﻿@model MusicInShop.Web.Models.OrganizationPageModel
+
+@{
+    ViewBag.Title = Model.Organization.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container space-top">
+    <div class="project-page-top">
+        <div class="image-block">
+            <!-- Product Details Left -->
+            <div class="product-details-left">
+                <div class="product-details-images">
+                    <div class="lg-image rounded-corners">
+                        <img src="@string.Format($"/Content/img/users/{Model.Organization.Id}.jpg")" alt="">
+                    </div>
+                </div>
+            </div>
+            <!--Product Details Left -->
+        </div>
+        <div class="general-info">
+            <div class="col-md-6">
+                <!--Product Details Content Start-->
+                <div class="product-details-content info-width">
+
+                    <h1 class="title-text-color">@Model.Organization.Name</h1>
+                    <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+                    <p class="project-page-title">Контакты</p>
+                    <h4 class="project-page-text contact-text"><a href="#">@Model.Organization.Email</a></h4>
+                    @if (Model.Organization.PhoneNumber != null)
+                    {
+                        <h4 class="project-page-text contact-text">@Model.Organization.PhoneNumber</h4>
+                    }
+
+                    <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+                    <p class="project-page-title">Город / село</p>
+                    <h4 class="project-page-text">@Model.Organization.Town</h4>
+
+                    <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <!--Product Details Content Start-->
+        <div class="product-details-content">
+
+            <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+
+            @if (Model.Organization.Description != null)
+            {
+                <p class="project-page-title">Описание</p>
+                <p class="project-page-text">@Model.Organization.Description</p>
+
+                <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+            }
+
+
+            @if (Model.Organization.Address != null)
+            {
+                <p class="project-page-title">Адресс</p>
+                <h4 class="project-page-text">@Model.Organization.Address</h4>
+
+                <span><img src="~/Content/img/white.png" alt="" height="30"></span>
+            }
+        </div>
+    </div>
+</div>

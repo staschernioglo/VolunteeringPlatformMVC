@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="headerwrap">
+    <div>
+        <div class="main-text-block">
+            <h1 class="main-text">Платформа для <br />добрых дел в Молдове</h1>
+        </div>
+    </div>
+</div>
+
+
+    <div class="container">
+        <div class="row centered mt mb">
+            <div class="projects">
+                <div class="img-pos-left">
+                    <img src="~/Content/img/proj_icon.png" class=" img-params" />
+                </div>
+                <div>
+                    <div class="slogans">
+                        <p>Участвуй в проектах</p>
+                    </div>
+                    <a href="@Url.Action("Index","Project")" class="floating-button button-pos">Проекты</a>
+                </div>
+            </div>
+
+            <div class="good-deeds">
+                <div class="left-part">
+                    <div class="slogans-second">
+                        <p>Твори добрые дела</p>
+                    </div>
+                    <a href="@Url.Action("Index","GoodDeed")" class="floating-button-second button-pos-second">Добрые дела</a>
+                </div>
+                <div class="img-pos-right">
+                    <img src="~/Content/img/good_icon3.png" class=" img-params" />
+                </div>
+
+            </div>
+
+            <div class="volunteers">
+                <div class="img-pos-left-second">
+                    <img src="~/Content/img/volunt_icon2.png" class=" img-params" />
+                </div>
+                <div>
+                    <div class="slogans">
+                        <p>Стань волонтёром</p>
+                    </div>
+                    <a href="@Url.Action("VolunteerPage","User")" class="floating-button-third button-pos">Волонтёры</a>
+                </div>
+            </div>
+
+            <div class="organizations">
+                <div class="left-part">
+                    <div class="slogans-second">
+                        <p>Стань организатором</p>
+                    </div>
+                    <a href="@Url.Action("OrganizationPage","User")" class="floating-button-second button-pos-four">Организации</a>
+                </div>
+                <div class="img-pos-right-second">
+                    <img src="~/Content/img/organization_icon.png" class=" img-params" />
+                </div>
+
+            </div>
+        </div>
+    </div>
